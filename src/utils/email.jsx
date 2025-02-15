@@ -1,10 +1,10 @@
 import emailjs from "@emailjs/browser";
 
-const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-const EMAILJS_SENDER_EMAIL = import.meta.env.VITE_EMAILJS_SENDER_EMAIL;
-const EMAILJS_SUBJECT = import.meta.env.VITE_EMAILJS_SUBJECT || "Message from MartPal";
+const EMAILJS_SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = process.env.REACT_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = process.env.REACT_EMAILJS_PUBLIC_KEY;
+const EMAILJS_SENDER_EMAIL = process.env.REACT_EMAILJS_SENDER_EMAIL;
+const EMAILJS_SUBJECT = process.env.REACT_EMAILJS_SUBJECT || "Message from MartPal";
 
 export const sendEmail = async (recipientEmail, recipientName, message) => {
   // Remove unwanted HTML tags from ReactQuill input

@@ -1,8 +1,9 @@
 import axios from "axios";
 
-const ULTRAMSG_INSTANCE_ID = import.meta.env.VITE_ULTRAMSG_INSTANCE_ID;
-const ULTRAMSG_TOKEN = import.meta.env.VITE_ULTRAMSG_TOKEN;
-const ULTRAMSG_API_URL = `${import.meta.env.VITE_ULTRAMSG_API_URL}/${ULTRAMSG_INSTANCE_ID}/messages/chat`;
+const ULTRAMSG_INSTANCE_ID=process.env.REACT_ULTRAMSG_INSTANCE_ID;
+const ULTRAMSG_TOKEN=process.env.REACT_ULTRAMSG_TOKEN;
+const ULTRAMSG_API_URL=`${process.env.REACT_ULTRAMSG_API_URL}/${ULTRAMSG_INSTANCE_ID}/messages/chat`;
+
 
 export const sendWhatsAppMessage = async (phoneNumber, recipientName = "Customer", message) => {
   if (!phoneNumber || !message) {
