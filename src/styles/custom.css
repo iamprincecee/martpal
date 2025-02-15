@@ -1,0 +1,48 @@
+.auth-container {
+    height: 100vh;
+    background: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
+  }
+  
+  .auth-card {
+    background-color: #f3efef;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .text-primary {
+    color: #007bff !important;
+  }
+  .nav-tabs {
+    margin-bottom: 1rem;
+  }
+  
+  .nav-tabs .nav-link {
+    color: #007bff;
+  }
+  
+  .nav-tabs .nav-link.active {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .table {
+    margin-top: 1rem;
+  }
+  
+  .text-center {
+    font-size: 1.2rem;
+  }
+  .card {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .text-center {
+    font-size: 1.2rem;
+  }
+  
+  button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  
