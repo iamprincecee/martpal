@@ -1,15 +1,17 @@
 import emailjs from "@emailjs/browser";
 
-const EMAILJS_SERVICE_ID = "service_ilzhaeq";  
-const EMAILJS_TEMPLATE_ID = "template_szxkj6d";  
-const EMAILJS_PUBLIC_KEY = "dwbAAVnMs5bbgO4nq";  
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+const EMAILJS_SENDER_EMAIL = import.meta.env.VITE_EMAILJS_SENDER_EMAIL;
+const EMAILJS_SUBJECT = import.meta.env.VITE_EMAILJS_SUBJECT || "Message from MartPal";
 
 export const sendEmail = async (recipientEmail, recipientName, message) => {
   // Remove unwanted HTML tags from ReactQuill input
   const plainTextMessage = message
     .replace(/<\/?p>/g, "\n") // Convert paragraphs to new lines
-    .replace(/<br>/g, "\n")   // Convert line breaks to new lines
-    .replace(/<\/?[^>]+(>|$)/g, "") // Remove any other remaining HTML tags
+    .replace(/<br\s*\/?>/g, "\n") // Convert line breaks to new lines
+    .replace(/<\/?[^>]+(>|$)/g, "") // Remove any remaining HTML tags
     .trim();
 
   // Replace {{name}} with actual recipient name
@@ -18,9 +20,9 @@ export const sendEmail = async (recipientEmail, recipientName, message) => {
   const emailParams = {
     to_email: recipientEmail,
     to_name: recipientName || "Customer",
-    from_email: "ashervan97@gmail.com",  // Replace with your verified EmailJS sender email
-    subject: "Important Message from MartPal",
-    message: personalizedMessage, // Send plain text message
+    from_email: EMAILJS_SENDER_EMAIL, // Load from .env
+    subject: EMAILJS_SUBJECT, // Load from .env
+    message: personalizedMessage,
   };
 
   try {

@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const ULTRAMSG_INSTANCE_ID = "instance106605";  
-const ULTRAMSG_TOKEN = "8hmaed0k3ehrcww2";  
-const ULTRAMSG_API_URL = `https://api.ultramsg.com/${ULTRAMSG_INSTANCE_ID}/messages/chat`;
+const ULTRAMSG_INSTANCE_ID = import.meta.env.VITE_ULTRAMSG_INSTANCE_ID;
+const ULTRAMSG_TOKEN = import.meta.env.VITE_ULTRAMSG_TOKEN;
+const ULTRAMSG_API_URL = `${import.meta.env.VITE_ULTRAMSG_API_URL}/${ULTRAMSG_INSTANCE_ID}/messages/chat`;
 
 export const sendWhatsAppMessage = async (phoneNumber, recipientName = "Customer", message) => {
   if (!phoneNumber || !message) {
@@ -13,7 +13,7 @@ export const sendWhatsAppMessage = async (phoneNumber, recipientName = "Customer
   // Convert message from HTML to plain text
   const plainTextMessage = message
     .replace(/<\/?p>/g, "\n") // Convert paragraphs to new lines
-    .replace(/<br>/g, "\n")   // Convert line breaks to new lines
+    .replace(/<br\s*\/?>/g, "\n") // Convert line breaks to new lines
     .replace(/<\/?[^>]+(>|$)/g, "") // Remove any other remaining HTML tags
     .trim();
 
