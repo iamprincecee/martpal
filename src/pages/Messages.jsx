@@ -101,7 +101,7 @@ const Messages = () => {
           const lead = filteredLeads.find((l) => l.id === leadId);
           if (!lead) return;
 
-          const leadRef = doc(collection(martpalDb, "scheduledMessages", user.uid, "messages"), leadId);
+          const leadRef = doc(martpalDb, "scheduledMessages", user.uid, "messages", leadId);
           await setDoc(leadRef, {
             message,
             scheduledTime,
@@ -182,7 +182,14 @@ const Messages = () => {
   };
 
   const loadTemplate = (content) => {
-    setMessage(content); // Ensure message field updates correctly when loading a template
+    if (!content) {
+      console.error("❌ Template content is empty.");
+      return;
+    }
+  
+    console.log("✅ Loaded template:", content);
+    setMessage(""); // 🔄 Reset before setting new content
+    setTimeout(() => setMessage(content), 10); // 🔄 Ensure re-render
   };
 
   return (
@@ -245,7 +252,7 @@ const Messages = () => {
       <button className="btn btn-primary me-2" onClick={sendMessageNow}>
         Send Now
       </button>
-      <button className="btn btn-warning" onClick={scheduleMessage}>
+      <button className="btn btn-gray" onClick={scheduleMessage} disabled>
         Schedule Message
       </button>
 
@@ -264,8 +271,14 @@ const Messages = () => {
       {templates.map((template) => (
         <div key={template.id} className="d-flex justify-content-between align-items-center mb-2">
           <span>{template.name}</span>
-          <button className="btn btn-info btn-sm me-2" onClick={() => loadTemplate(template.content)}>
-            Load
+          <button 
+              className="btn btn-info btn-sm me-2" 
+              onClick={() => {
+                console.log("🔄 Loading template:", template.content);
+                loadTemplate(template.content);
+              }}
+            >
+              Load
           </button>
           <button className="btn btn-danger btn-sm" onClick={() => deleteTemplate(template.id)}>
             Delete
