@@ -34,7 +34,7 @@ const Login = () => {
   return (
     <div className="auth-container d-flex justify-content-center align-items-center">
       <div className="auth-card shadow-sm p-4 rounded">
-        <h2 className="text-center mb-4">Log In</h2>
+        <h2 className="text-center mb-4">MartPal Login</h2>
         {error && <div className="alert alert-danger">{error}</div>}
         <form onSubmit={handleLogin}>
           <div className="mb-3">
