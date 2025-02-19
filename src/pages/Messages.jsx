@@ -13,6 +13,7 @@ import {
 import { db as martpalDb } from "../services/firebase";
 import { useAuth } from "../context/AuthContext";
 import ReactQuill from "react-quill";
+import "../styles/custom.css";
 import "react-quill/dist/quill.snow.css";
 import { sendWhatsAppMessage } from "../utils/whatsapp";
 import { sendEmail } from "../utils/email";
@@ -247,7 +248,9 @@ const Messages = () => {
       />
 
 
-      <ReactQuill theme="snow" value={message} onChange={setMessage} />
+      <ReactQuill className="msg-container" theme="snow" value={message} onChange={setMessage} placeholder="Use >>{{name}}<< to fetch all names 
+      <br /> 
+      for every time you need the customer's name to appear" />
 
       <button className="btn btn-primary me-2" onClick={sendMessageNow}>
         Send Now
