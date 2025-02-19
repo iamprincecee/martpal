@@ -274,7 +274,7 @@ const Messages = () => {
       {templates.map((template) => (
         <div key={template.id} className="d-flex justify-content-between align-items-center mb-2">
           <span>{template.name}</span>
-          <button 
+          {/* <button 
               className="btn btn-info btn-sm me-2" 
               onClick={() => {
                 console.log("🔄 Loading template:", template.content);
@@ -282,7 +282,7 @@ const Messages = () => {
               }}
             >
               Load
-          </button>
+          </button> */}
           <button className="btn btn-danger btn-sm" onClick={() => deleteTemplate(template.id)}>
             Delete
           </button>
